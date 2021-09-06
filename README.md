@@ -3,13 +3,13 @@
 
 # Character
 
-![](Git_Resources/Paragon_Countess.gif)
+![Image](Git_Resources/Paragon_Countess.gif)
 
-![](Git_Resources/Paragon_Countess2.gif)
+![Image](Git_Resources/Paragon_Countess2.gif)
 
-![](Git_Resources/Paragon_Countess.jpg)
+![Image](Git_Resources/Paragon_Countess.jpg)
 
-![](Git_Resources/Paragon_Countess2.jpg)
+![Image](Git_Resources/Paragon_Countess2.jpg)
 
 # Notice
 - gitignore : Visual studio
