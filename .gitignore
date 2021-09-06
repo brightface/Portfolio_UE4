@@ -129,6 +129,8 @@ Plugins/*/Binaries/*
 
 # End
 ##########################################
+
+## 추가로 직접 무기 경로 만들어준거
 TheLastRPG/Saved/Logs/
 TheLastRPG/Saved/Config/CrashReportClient/
 TheLastRPG/Saved/Config/WorldState/
