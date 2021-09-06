@@ -12,9 +12,11 @@
 ![Image](Git_Resources/README/Paragon_Countess2.jpg)
 
 # Notice
-- gitignore : Visual studio
-- version : 4.26.2
-- project begin : Semptember 6
+- gitignore : Unreal Engine
+- Engine Version : 4.26.2
+- Project begin : Semptember 6
+- VCS : git (using Sourcetree)
+- IDE : Visual studio 2017
 
 ## Branch
 
