@@ -7,6 +7,9 @@
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
 
+// 최종 완료 코드
+
+
 UCLASS()
 class THELASTRPG_API APlayerCharacter : public ACharacter
 {
@@ -27,5 +30,3 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };
-
-// Test code
