@@ -14,7 +14,7 @@
 # Notice
 - gitignore : Unreal Engine
 - Engine Version : 4.26.2
-- Project begin : Semptember 6
+- Project begin : December 19
 - VCS : git (using Sourcetree)
 - IDE : Visual studio 2017
 
