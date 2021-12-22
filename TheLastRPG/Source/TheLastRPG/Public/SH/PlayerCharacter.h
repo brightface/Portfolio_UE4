@@ -2,13 +2,10 @@
 
 #pragma once
 
-//#include "CoreMinimal.h" 
+#include "CoreMinimal.h" 
 
 #include "GameFramework/Character.h"
 #include "PlayerCharacter.generated.h"
-
-// 최종 완료 코드
-
 
 UCLASS()
 class THELASTRPG_API APlayerCharacter : public ACharacter
@@ -30,6 +27,20 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY(VisibleAnywhere)
-	class USkeletalMeshComponent* _mesh;
+	void UpDown(float value);
+	void LeftRight(float value);
+
+
+private:
+	UPROPERTY(VisibleAnywhere, Category=Stat)
+	int32 m_hp;
+
+	UPROPERTY(VisibleAnywhere, Category = Stat)
+	int32 m_mp;
+
+	UPROPERTY(VisibleAnywhere, Category = Stat)
+	float m_RotateSpeed =30.f;
+
+	UPROPERTY(VisibleAnywhere, Category = Stat)
+	class UCharacterMovementComponent* m_Movement;
 };
