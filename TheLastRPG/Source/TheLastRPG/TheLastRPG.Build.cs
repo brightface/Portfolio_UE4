@@ -9,5 +9,7 @@ public class TheLastRPG : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
-	}
+
+        PublicIncludePaths.Add(ModuleDirectory);
+    }
 }
