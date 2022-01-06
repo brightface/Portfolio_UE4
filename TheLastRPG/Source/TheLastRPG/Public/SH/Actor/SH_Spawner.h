@@ -4,29 +4,25 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SH_SpawnActor.generated.h"
+#include "SH_Spawner.generated.h"
 
 UCLASS()
-class THELASTRPG_API ASH_SpawnActor : public AActor
+class THELASTRPG_API ASH_Spawner : public AActor
 {
 	GENERATED_BODY()
 	
-protected:
-	UPROPERTY(VisibleDefaultsOnly)
-		class UStaticMeshComponent* Mesh;
+private:
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<class ASH_SpawnActor> SpawnClass[3];
 
 public:	
 	// Sets default values for this actor's properties
-	ASH_SpawnActor();
+	ASH_Spawner();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-	UFUNCTION()
-		void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
-
+	class ASH_SpawnActor* SpawnActors[3];
 };

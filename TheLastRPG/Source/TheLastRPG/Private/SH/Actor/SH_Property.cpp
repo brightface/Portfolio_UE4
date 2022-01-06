@@ -17,18 +17,18 @@ void ASH_Property::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	FString str; // F는 구조체. String은 예외로 F가 붙음.
-	str.Append("A : ");
-	str.Append(FString::FromInt(A));
-	str.Append(", ");
-	str.Append("B : ");
-	str.Append(FString::FromInt(B));
-	str.Append(", ");
-	str.Append("C : ");
-	str.Append(FString::FromInt(C));
+	//FString str; // F는 구조체. String은 예외로 F가 붙음.
+	//str.Append("A : ");
+	//str.Append(FString::FromInt(A));
+	//str.Append(", ");
+	//str.Append("B : ");
+	//str.Append(FString::FromInt(B));
+	//str.Append(", ");
+	//str.Append("C : ");
+	//str.Append(FString::FromInt(C));
 
 	// 싱글톤 GLog (전역 객체)
-	GLog->Log(str);
+	//GLog->Log(str);
 }
 
 // Called every frame
