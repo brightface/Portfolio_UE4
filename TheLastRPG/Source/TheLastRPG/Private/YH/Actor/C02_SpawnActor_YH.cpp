@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "YH/C02_SpawnActor_YH.h"
+#include "YH/Actor/C02_SpawnActor_YH.h"
 #include "Components/StaticMeshComponent.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "Materials/MaterialInstanceDynamic.h"

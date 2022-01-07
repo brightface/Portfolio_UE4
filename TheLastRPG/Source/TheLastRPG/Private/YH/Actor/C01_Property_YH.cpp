@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "YH/C01_Property_YH.h"
+#include "YH/Actor/C01_Property_YH.h"
 
 // Sets default values
 AC01_Property_YH::AC01_Property_YH()

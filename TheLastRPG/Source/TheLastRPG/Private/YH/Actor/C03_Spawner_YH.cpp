@@ -2,6 +2,7 @@
 
 
 #include "YH/Actor/C03_Spawner_YH.h"
+#include "YH/Actor/C02_SpawnActor_YH.h"
 #include "YH/Global_YH.h"
 
 AC03_Spawner_YH::AC03_Spawner_YH()

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "YH/C02_SpawnActor_YH.h"
+#include "YH/Actor/C02_SpawnActor_YH.h"
 #include "C02_SpawnActor_YH_Sphere.generated.h"
 
 /**
