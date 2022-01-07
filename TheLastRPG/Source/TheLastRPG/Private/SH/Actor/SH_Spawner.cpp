@@ -2,7 +2,7 @@
 
 
 #include "SH/Actor/SH_Spawner.h"
-#include "SH/Global.h"
+#include "SH/Global_SH.h"
 #include "SH/Actor/SH_SpawnActor.h"
 
 // Sets default values

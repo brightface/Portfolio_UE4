@@ -2,7 +2,7 @@
 
 
 #include "SH/Actor/SH_SpawnActor_Sphere.h"
-#include "SH/Global.h"
+#include "SH/Global_SH.h"
 
 
 ASH_SpawnActor_Sphere::ASH_SpawnActor_Sphere()

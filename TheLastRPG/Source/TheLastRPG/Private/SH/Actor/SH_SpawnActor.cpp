@@ -2,7 +2,7 @@
 
 
 #include "SH/Actor/SH_SpawnActor.h"
-#include "SH/Global.h" // = "../Global.h"
+#include "SH/Global_SH.h" // = "../Global.h"
 #include "Components/StaticMeshComponent.h"
 #include "Materials/MaterialInstanceConstant.h"
 #include "Materials/MaterialInstanceDynamic.h"
