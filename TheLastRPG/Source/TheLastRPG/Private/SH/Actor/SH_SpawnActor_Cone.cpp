@@ -8,6 +8,6 @@
 ASH_SpawnActor_Cone::ASH_SpawnActor_Cone()
 {
 	UStaticMesh* mesh;
-	CHelpers::GetAsset<UStaticMesh>(&mesh, "StaticMesh'/Game/SungHoon/Meshes/SH_Cone.SH_Cone'");
+	SH_CHelpers::GetAsset<UStaticMesh>(&mesh, "StaticMesh'/Game/SungHoon/Meshes/SH_Cone.SH_Cone'");
 	Mesh->SetStaticMesh(mesh);
 }

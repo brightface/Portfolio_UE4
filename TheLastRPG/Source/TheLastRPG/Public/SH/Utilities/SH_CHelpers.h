@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/ConstructorHelpers.h"
 
-class THELASTRPG_API CHelpers
+class THELASTRPG_API SH_CHelpers
 {
 public:
 	template<typename T>

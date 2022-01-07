@@ -22,7 +22,7 @@ ASH_SpawnActor::ASH_SpawnActor()
 	}*/
 
 	UStaticMesh* mesh;
-	CHelpers::GetAsset<UStaticMesh>(&mesh, "StaticMesh'/Game/SungHoon/Meshes/SH_Cube.SH_Cube'");
+	SH_CHelpers::GetAsset<UStaticMesh>(&mesh, "StaticMesh'/Game/SungHoon/Meshes/SH_Cube.SH_Cube'");
 	Mesh->SetStaticMesh(mesh);
 }
 
@@ -36,7 +36,7 @@ void ASH_SpawnActor::BeginPlay()
 	//UMaterialInstanceConstant* material = Cast<UMaterialInstanceConstant>(obj);
 
 	UMaterialInstanceConstant* material;
-	CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/SungHoon/Materials/M_Mesh_Inst.M_Mesh_Inst'");
+	SH_CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/SungHoon/Materials/M_Mesh_Inst.M_Mesh_Inst'");
 
 	Material = UMaterialInstanceDynamic::Create(material, this);
 	Mesh->SetMaterial(0, Material); // 0번째 인덱스에 우리가 만든 머티리얼을 할당한다.
