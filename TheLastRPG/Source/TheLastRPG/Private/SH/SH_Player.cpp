@@ -3,6 +3,7 @@
 
 #include "SH/SH_Player.h"
 #include "SH/SH_Global.h"
+#include "SH/SH_CAnimInstance.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
@@ -33,6 +34,10 @@ ASH_Player::ASH_Player()
 
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
 	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
+
+	TSubclassOf<UAnimInstance> animInstance;
+	SH_CHelpers::GetClass<UAnimInstance>(&animInstance, "AnimBlueprint'/Game/SungHoon/Blueprints/ABP_SH_CPlayer.ABP_SH_CPlayer_C'");
+	GetMesh()->SetAnimInstanceClass(animInstance);
 
 	SpringArm->SetRelativeLocation(FVector(0, 0, 60));
 	SpringArm->TargetArmLength = 200.0f;
@@ -65,6 +70,8 @@ void ASH_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	PlayerInputComponent->BindAxis("Turn", this, &ASH_Player::OnHorizontalLook);
 	PlayerInputComponent->BindAxis("LookUp", this, &ASH_Player::OnVerticalLook);
 
+	PlayerInputComponent->BindAction("SH_Running", EInputEvent::IE_Pressed, this, &ASH_Player::OnRunning);
+	PlayerInputComponent->BindAction("SH_Running", EInputEvent::IE_Released, this, &ASH_Player::OffRunning);
 }
 
 void ASH_Player::OnMoveForward(float Axis)
@@ -93,4 +100,14 @@ void ASH_Player::OnVerticalLook(float Axis)
 {
 	// À§¾Æ·¡
 	AddControllerPitchInput(Axis);
+}
+
+void ASH_Player::OnRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 850;
+}
+
+void ASH_Player::OffRunning()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 400;
 }

@@ -42,4 +42,7 @@ private:
 	void OnHorizontalLook(float Axis);
 	void OnVerticalLook(float Axis);
 
+private:
+	void OnRunning();
+	void OffRunning();
 };
