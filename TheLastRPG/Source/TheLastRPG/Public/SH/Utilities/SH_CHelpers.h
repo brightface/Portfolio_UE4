@@ -24,4 +24,30 @@ public:
 
 		*OutObject = obj;
 	}
+
+	template<typename T>
+	static void GetClass(TSubclassOf<T>* OutClass, FString InPath)
+	{
+		ConstructorHelpers::FClassFinder<T> asset(*InPath);
+		verifyf(asset.Succeeded(), L"asset.Succeeded()");
+
+		*OutClass = asset.Class;
+	}
+
+
+
+	template<typename T> // 어느 액터, 부착할 컴포넌트 종류, 변수명, 씬 컴포넌트
+	static void CreateComponent(AActor* InActor, T** InComponent, FName InName, USceneComponent* InParent = NULL)
+	{
+		*InComponent = InActor->CreateDefaultSubobject<T>(InName);
+
+		if (!!InParent) // 있다면
+		{
+			(*InComponent)->SetupAttachment(InParent);
+			return;
+		}
+
+		InActor->SetRootComponent(*InComponent);
+	}
+
 };

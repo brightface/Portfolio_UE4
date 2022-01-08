@@ -11,6 +11,14 @@ class THELASTRPG_API ASH_Player : public ACharacter
 {
 	GENERATED_BODY()
 
+
+private:
+	UPROPERTY(VisibleDefaultsOnly)
+		class USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleDefaultsOnly)
+		class UCameraComponent* Camera;
+
 public:
 	// Sets default values for this character's properties
 	ASH_Player();
@@ -19,11 +27,19 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
+private:
+	void OnMoveForward(float Axis);
+	void OnMoveRight(float Axis);
+
+	void OnHorizontalLook(float Axis);
+	void OnVerticalLook(float Axis);
 
 };

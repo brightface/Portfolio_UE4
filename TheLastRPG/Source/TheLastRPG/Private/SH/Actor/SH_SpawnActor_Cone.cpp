@@ -2,7 +2,7 @@
 
 
 #include "SH/Actor/SH_SpawnActor_Cone.h"
-#include "SH/Global_SH.h"
+#include "SH/SH_Global.h"
 
 
 ASH_SpawnActor_Cone::ASH_SpawnActor_Cone()
