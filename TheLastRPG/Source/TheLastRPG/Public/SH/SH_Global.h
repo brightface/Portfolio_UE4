@@ -2,6 +2,7 @@
 
 #include "DrawDebugHelpers.h"
 
+#include "Kismet/GameplayStatics.h" // ≈∞¡Ó∏À
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 
