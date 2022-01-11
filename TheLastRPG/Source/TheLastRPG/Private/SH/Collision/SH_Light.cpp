@@ -9,6 +9,7 @@ ASH_Light::ASH_Light()
 	SH_CHelpers::CreateComponent<USceneComponent>(this, &Scene, "Scene"); // 부모가 될거니까 부모를 비어둠.
 	SH_CHelpers::CreateComponent<UTextRenderComponent>(this, &Text, "Text", Scene);
 	SH_CHelpers::CreateComponent<UPointLightComponent>(this, &Light, "Light", Scene);
+	SH_CHelpers::CreateComponent<UPointLightComponent>(this, &Light2, "Light2", Scene);
 
 	Text->SetRelativeLocation(FVector(0, 0, 100));
 	Text->SetRelativeRotation(FRotator(0, 180, 0));
@@ -21,13 +22,19 @@ ASH_Light::ASH_Light()
 	//1e-6f = 10^-6 = 0.000001 : 5개의 0 1개는 1
 	Light->AttenuationRadius = 200; // 반경
 	Light->LightColor = FColor(255, 128, 50); // (255,255,255) char
+
+	Light2->SetRelativeLocation(FVector(0, 200, 0)); // 오른쪽으로 200만큼
+	Light2->Intensity = 1e+4f;
+	Light2->AttenuationRadius = 200;
+	Light2->LightColor = FColor(255, 128, 50);
 }
 
 void ASH_Light::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	Light->SetVisibility(false); // 처음엔 끔
+	Light2->SetVisibility(false); // 처음엔 끔
 
 	TArray<AActor*> actors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASH_Trigger::StaticClass(), actors);
@@ -37,6 +44,7 @@ void ASH_Light::BeginPlay()
 	ASH_Trigger* trigger = Cast<ASH_Trigger>(actors[0]); // 1개만 찾았을거라 0번 고정.
 	trigger->OnBoxLightBeginOverlap.BindUFunction(this, "OnLight");
 	trigger->OnBoxLightEndOverlap.BindUFunction(this, "OffLight");
+	trigger->OnBoxLightRandomBeginOverlap.BindUFunction(this, "OnRandomLight");
 }
 
 void ASH_Light::OnLight()
@@ -46,5 +54,14 @@ void ASH_Light::OnLight()
 
 void ASH_Light::OffLight()
 {
-	Light->SetVisibility(false); 
+	Light->SetVisibility(false);
+	Light2->SetVisibility(false);
+}
+
+FString ASH_Light::OnRandomLight(FLinearColor InColor)
+{
+	Light2->SetVisibility(true);
+	Light2->SetLightColor(InColor);
+
+	return InColor.ToString();
 }

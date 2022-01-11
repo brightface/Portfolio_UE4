@@ -1,9 +1,9 @@
-#include "SH/Collision/SH_Trigger.h"
+#include "SH/Collision/SH_MulticastTrigger.h"
 #include "SH/SH_Global.h"
 #include "Components/BoxComponent.h"
 #include "Components/TextRenderComponent.h"
 
-ASH_Trigger::ASH_Trigger()
+ASH_MulticastTrigger::ASH_MulticastTrigger()
 {
 	SH_CHelpers::CreateComponent<USceneComponent>(this, &Scene, "Scene");
 	SH_CHelpers::CreateComponent<UBoxComponent>(this, &Box, "Box", Scene);
@@ -17,38 +17,34 @@ ASH_Trigger::ASH_Trigger()
 	Text->SetRelativeScale3D(FVector(2));
 	Text->TextRenderColor = FColor::Red;
 	Text->HorizontalAlignment = EHorizTextAligment::EHTA_Center;
-	Text->Text = FText::FromString(GetName()); // 객체의 이름, String을 Text로 변환해줌.
+	Text->Text = FText::FromString(GetName());
 }
 
-// Called when the game starts or when spawned
-void ASH_Trigger::BeginPlay()
+void ASH_MulticastTrigger::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	OnActorBeginOverlap.AddDynamic(this, &ASH_Trigger::ActorBeginOverlap);
-	OnActorEndOverlap.AddDynamic(this, &ASH_Trigger::ActorEndOverlap);
+	OnActorBeginOverlap.AddDynamic(this, &ASH_MulticastTrigger::ActorBeginOverlap);
+	OnActorEndOverlap.AddDynamic(this, &ASH_MulticastTrigger::ActorEndOverlap);
 }
 
-void ASH_Trigger::ActorBeginOverlap(AActor * OverlappedActor, AActor * OtherActor)
+void ASH_MulticastTrigger::ActorBeginOverlap(AActor * OverlappedActor, AActor * OtherActor)
 {
-	if (OnBoxLightBeginOverlap.IsBound()) // 어떤 연결된 함수가 있느냐
-		OnBoxLightBeginOverlap.Execute(); // 실행하라.
-
-	if (OnBoxLightRandomBeginOverlap.IsBound())
+	if (OnMultiLightBeginOverlap.IsBound())
 	{
+		int32 index = UKismetMathLibrary::RandomIntegerInRange(0, 2);
+
 		FLinearColor color;
 		color.R = UKismetMathLibrary::RandomFloatInRange(0, 1);
 		color.G = UKismetMathLibrary::RandomFloatInRange(0, 1);
 		color.B = UKismetMathLibrary::RandomFloatInRange(0, 1);
 		color.A = 1.0f;
 
-		FString str = OnBoxLightRandomBeginOverlap.Execute(color);
-		SH_CLog::Log(str);
+		OnMultiLightBeginOverlap.Broadcast(index, color); // 여러개한테 전파한다는 브로드캐스트.
 	}
 }
 
-void ASH_Trigger::ActorEndOverlap(AActor * OverlappedActor, AActor * OtherActor)
+void ASH_MulticastTrigger::ActorEndOverlap(AActor * OverlappedActor, AActor * OtherActor)
 {
-	if (OnBoxLightEndOverlap.IsBound()) // 어떤 연결된 함수가 있느냐
-		OnBoxLightEndOverlap.Execute(); // 실행하라.
+	
 }

@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SH_Light.generated.h"
+#include "SH_SpotLight.generated.h"
 
 UCLASS()
-class THELASTRPG_API ASH_Light : public AActor
+class THELASTRPG_API ASH_SpotLight : public AActor
 {
 	GENERATED_BODY()
 	
@@ -19,23 +19,16 @@ private:
 		class UTextRenderComponent* Text;
 
 	UPROPERTY(VisibleDefaultsOnly)
-		class UPointLightComponent* Light;
-
-	UPROPERTY(VisibleDefaultsOnly)
-		class UPointLightComponent* Light2;
+		class USpotLightComponent* SpotLights[3];
 
 public:	
-	ASH_Light();
+	ASH_SpotLight();
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	UFUNCTION()
-		void OnLight();
-	UFUNCTION()
-		void OffLight();
+		void OnLightColor(int32 InIndex, FLinearColor InColor);
 
-	UFUNCTION()
-		FString OnRandomLight(FLinearColor InColor);
 };

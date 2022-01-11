@@ -8,6 +8,7 @@
 
 DECLARE_DELEGATE(FBoxLightBeginOverlap); // void __(void) : 델리게이트 자료형 선언
 DECLARE_DELEGATE(FBoxLightEndOverlap);
+DECLARE_DELEGATE_RetVal_OneParam(FString, FBoxLightRandomBeginOverlap, FLinearColor);
 
 UCLASS()
 class THELASTRPG_API ASH_Trigger : public AActor
@@ -43,4 +44,5 @@ private:
 public:
 	FBoxLightBeginOverlap OnBoxLightBeginOverlap;
 	FBoxLightEndOverlap OnBoxLightEndOverlap;
+	FBoxLightRandomBeginOverlap OnBoxLightRandomBeginOverlap;
 };

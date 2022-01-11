@@ -4,38 +4,38 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "SH_Light.generated.h"
+#include "SH_EventTrigger.generated.h"
 
 UCLASS()
-class THELASTRPG_API ASH_Light : public AActor
+class THELASTRPG_API ASH_EventTrigger : public AActor
 {
 	GENERATED_BODY()
+
+
+public:
+	DECLARE_EVENT_OneParam(ASH_EventTrigger, FEventTrigger, int32);
+
 	
 private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class USceneComponent* Scene;
 
 	UPROPERTY(VisibleDefaultsOnly)
+		class UBoxComponent* Box;
+
+	UPROPERTY(VisibleDefaultsOnly)
 		class UTextRenderComponent* Text;
 
-	UPROPERTY(VisibleDefaultsOnly)
-		class UPointLightComponent* Light;
-
-	UPROPERTY(VisibleDefaultsOnly)
-		class UPointLightComponent* Light2;
-
 public:	
-	ASH_Light();
+	ASH_EventTrigger();
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	UFUNCTION()
-		void OnLight();
-	UFUNCTION()
-		void OffLight();
+		void ActorBeginOverlap(AActor* OverlappedActor, AActor* OtherActor);
 
-	UFUNCTION()
-		FString OnRandomLight(FLinearColor InColor);
+public:
+	FEventTrigger OnEventTrigger;
 };
