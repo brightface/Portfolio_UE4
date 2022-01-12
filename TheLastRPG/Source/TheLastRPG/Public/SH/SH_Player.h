@@ -45,4 +45,12 @@ private:
 private:
 	void OnRunning();
 	void OffRunning();
+
+public:
+	UFUNCTION(BlueprintCallable) // BP에서 콜할 수 있는 함수
+		void ChangeColor(FLinearColor InColor);
+
+private:
+	class UMaterialInstanceDynamic* BodyMaterial;
+	class UMaterialInstanceDynamic* LogoMaterial;
 };

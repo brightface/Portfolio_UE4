@@ -8,6 +8,8 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h" // for GetCapsuleComponent
+#include "Materials/MaterialInstanceConstant.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 // Sets default values
 ASH_Player::ASH_Player()
@@ -46,14 +48,22 @@ ASH_Player::ASH_Player()
 
 }
 
-// Called when Sthe game starts or when spawned
 void ASH_Player::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UMaterialInstanceConstant* bodyMaterial;
+	SH_CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&bodyMaterial, "MaterialInstanceConstant'/Game/SungHoon/Materials/MI_Female_Body_Inst.MI_Female_Body_Inst'");
+
+	UMaterialInstanceConstant* logoMaterial;
+	SH_CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&logoMaterial, "MaterialInstanceConstant'/Game/SungHoon/Materials/M_UE4Man_ChestLogo_Inst.M_UE4Man_ChestLogo_Inst'");
+
+	BodyMaterial = UMaterialInstanceDynamic::Create(bodyMaterial, this);
+	LogoMaterial = UMaterialInstanceDynamic::Create(logoMaterial, this);
+	GetMesh()->SetMaterial(0, BodyMaterial); // 0번째 인덱스에 우리가 만든 머티리얼을 할당한다.
+	GetMesh()->SetMaterial(1, LogoMaterial); // 1번째 인덱스에 우리가 만든 머티리얼을 할당한다.
 }
 
-// Called every frame
 void ASH_Player::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -110,4 +120,10 @@ void ASH_Player::OnRunning()
 void ASH_Player::OffRunning()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 400;
+}
+
+void ASH_Player::ChangeColor(FLinearColor InColor)
+{
+	BodyMaterial->SetVectorParameterValue("BodyColor", InColor);
+	LogoMaterial->SetVectorParameterValue("BodyColor", InColor);
 }
