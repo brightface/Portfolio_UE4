@@ -26,7 +26,7 @@ void AC02_SpawnActor_YH::BeginPlay()
 {
 	Super::BeginPlay();
 	UMaterialInstanceConstant* material;
-	CHelpers_YH::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/Materials/M_Mesh_Inst.M_Mesh_Inst'");
+	CHelpers_YH::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/YongHwan/Materials/YH_Mesh_Inst.YH_Mesh_Inst'");
 
 	Material = UMaterialInstanceDynamic::Create(material, this);
 	Mesh->SetMaterial(0, Material);

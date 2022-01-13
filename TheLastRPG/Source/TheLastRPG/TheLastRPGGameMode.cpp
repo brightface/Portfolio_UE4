@@ -3,6 +3,7 @@
 #include "TheLastRPGGameMode.h"
 #include "TheLastRPGCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "YH/Global_YH.h"
 
 ATheLastRPGGameMode::ATheLastRPGGameMode()
 {
