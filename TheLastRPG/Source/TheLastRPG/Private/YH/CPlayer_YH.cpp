@@ -36,14 +36,14 @@ ACPlayer_YH::ACPlayer_YH()
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
 	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
 
-	/*TSubclassOf<UAnimInstance> animInstance;
-	CHelpers_YH::GetClass<UAnimInstance>(&animInstance, "AnimBlueprint'/Game/YongHwan/ABP_CPlayer_YH.ABP_CPlayer_YH_C'");
+	TSubclassOf<UAnimInstance> animInstance;
+	CHelpers_YH::GetClass<UAnimInstance>(&animInstance, "Blueprint'/Game/YongHwan/BP/YH_BP_CAnimInstance.YH_BP_CAnimInstance_C'");
 	GetMesh()->SetAnimInstanceClass(animInstance);
 
 	SpringArm->SetRelativeLocation(FVector(0, 0, 60));
 	SpringArm->TargetArmLength = 200.0f;
 	SpringArm->bDoCollisionTest = false;
-	SpringArm->bUsePawnControlRotation = true;*/
+	SpringArm->bUsePawnControlRotation = true;
 }
 
 // Called when the game starts or when spawned
