@@ -31,7 +31,7 @@ void ASH_Log::BeginPlay() //
 	SH_CLog::Log(GetActorRotation());
 
 	SH_CLog::Log(this);
-	PrintLine2();
+	PrintLine();
 }
 
 // Called every frame

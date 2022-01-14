@@ -80,8 +80,8 @@ void ASH_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 	PlayerInputComponent->BindAxis("Turn", this, &ASH_Player::OnHorizontalLook);
 	PlayerInputComponent->BindAxis("LookUp", this, &ASH_Player::OnVerticalLook);
 
-	PlayerInputComponent->BindAction("SH_Running", EInputEvent::IE_Pressed, this, &ASH_Player::OnRunning);
-	PlayerInputComponent->BindAction("SH_Running", EInputEvent::IE_Released, this, &ASH_Player::OffRunning);
+	PlayerInputComponent->BindAction("Running", EInputEvent::IE_Pressed, this, &ASH_Player::OnRunning);
+	PlayerInputComponent->BindAction("Running", EInputEvent::IE_Released, this, &ASH_Player::OffRunning);
 }
 
 void ASH_Player::OnMoveForward(float Axis)

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 
-#define PrintLine2() {SH_CLog::Log(__FUNCTION__, __LINE__);}
+#define PrintLine() {SH_CLog::Log(__FUNCTION__, __LINE__);}
 
 class THELASTRPG_API SH_CLog
 {

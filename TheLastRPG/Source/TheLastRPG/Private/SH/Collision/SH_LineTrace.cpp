@@ -82,7 +82,7 @@ void ASH_LineTrace::Tick(float DeltaTime)
 void ASH_LineTrace::StartJump(AActor* InActor, FLinearColor InColor)
 {
 	ASH_Player* player = Cast<ASH_Player>(InActor);
-	CheckNull2(player);
+	CheckNull(player);
 
 	player->Jump();
 }
