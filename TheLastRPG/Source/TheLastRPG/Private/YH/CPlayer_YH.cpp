@@ -103,11 +103,14 @@ void ACPlayer_YH::OnVerticalLook(float Axis)
 
 void ACPlayer_YH::OnRunning()
 {
-	GetCharacterMovement()->MaxWalkSpeed = 600;
+	GetCharacterMovement()->MaxWalkSpeed = 900;
+	
+	YH_CLog::Log(GetCharacterMovement()->MaxWalkSpeed);
 }
 
 void ACPlayer_YH::OffRunning()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 400;
+	YH_CLog::Log(GetCharacterMovement()->MaxWalkSpeed);
 }
 
