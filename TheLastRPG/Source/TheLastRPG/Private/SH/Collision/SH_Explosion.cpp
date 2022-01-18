@@ -22,4 +22,26 @@ void ASH_Explosion::ActorBeginOverlap(AActor * OverlappedActor, AActor * OtherAc
 {
 	Particle->ResetParticles(); // 리셋해줘야함. 기존에 하던거 초기화됨
 	Particle->SetActive(true); // 들어왔을때 실행
+	 
+	FVector start = GetActorLocation();
+	FVector end = FVector(start.X, start.Y, start.Z + 10);
+
+	TArray<TEnumAsByte<EObjectTypeQuery>> queries;
+	queries.Add(EObjectTypeQuery::ObjectTypeQuery4);
+
+	TArray<AActor*> ignoreActors;
+	ignoreActors.Add(this);
+
+	TArray<FHitResult> hitResults;
+
+	if (UKismetSystemLibrary::SphereTraceMultiForObjects(GetWorld(), start, end, 200, queries, false, ignoreActors, EDrawDebugTrace::ForOneFrame, hitResults, true))
+	{
+		for (const FHitResult& hitResult : hitResults)
+		{
+			UStaticMeshComponent* meshComponent = Cast<UStaticMeshComponent>(hitResult.GetActor()->GetRootComponent());
+			if (!!meshComponent)
+				meshComponent->AddRadialImpulse(GetActorLocation(), 1000, meshComponent->GetMass()*800.0f, ERadialImpulseFalloff::RIF_Linear);
+		}
+
+	}
 }
