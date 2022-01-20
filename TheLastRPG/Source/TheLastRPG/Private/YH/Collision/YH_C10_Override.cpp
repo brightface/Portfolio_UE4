@@ -30,9 +30,11 @@ void AYH_C10_Override::BeginPlay()
 	OnActorEndOverlap.AddDynamic(this, &AYH_C10_Override::ActorEndOverlap);
 }
 
+//여기서 안만들고 블프에서 한다.
 //void AYH_C10_Override::ChangeColorRed()
 //{
 //	
+//
 //}
 //
 //void AYH_C10_Override::ChangeColorWhite()

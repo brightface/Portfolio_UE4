@@ -27,12 +27,14 @@ protected:
 	virtual void BeginPlay() override;
 
 protected:
+	//둘다 자식에서 가능하다(블프)
+	//콜은 해주는데 알아서 몸체를 만드세요
 	UFUNCTION(BlueprintImplementableEvent)
 		void ChangeColorRed();
-
+	//기본으로는 이렇게 지정해놧는데 필요하면 재정의 해라.
 	UFUNCTION(BlueprintNativeEvent)
 		void ChangeColorWhite();
-	void ChangeColorWhite_Implementation();
+	void ChangeColorWhite_Implementation(); //재정의 할때는 implement를 붙인다.
 
 
 private:
