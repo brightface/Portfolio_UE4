@@ -4,28 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "JG02_SpawnActor.generated.h"
+#include "JG03_Spawner.generated.h"
 
 UCLASS()
-class THELASTRPG_API AJG02_SpawnActor : public AActor
+class THELASTRPG_API AJG03_Spawner : public AActor
 {
 	GENERATED_BODY()
-
-protected:
-	UPROPERTY(VisibleDefaultsOnly)
-	class UStaticMeshComponent* Mesh;
-
-public:
+	
+private:
+	//리플렉션 기능
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class AJG02_SpawnActor> SpawnClass[3];
+public:	
 	// Sets default values for this actor's properties
-	AJG02_SpawnActor();
+	AJG03_Spawner();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-	UFUNCTION()
-	void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
+	class AJG02_SpawnActor* SpawnActors[3];
+
 };

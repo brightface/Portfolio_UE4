@@ -4,28 +4,29 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "JG02_SpawnActor.generated.h"
+#include "JG01_Cylinder.generated.h"
 
 UCLASS()
-class THELASTRPG_API AJG02_SpawnActor : public AActor
+class THELASTRPG_API AJG01_Cylinder : public AActor
 {
 	GENERATED_BODY()
+	
+	private:
+	UPROPERTY(VisibleDefaultsOnly)
+	class USceneComponent* Scene;
 
-protected:
+	UPROPERTY(VisibleDefaultsOnly)
+	class UTextRenderComponent* Text;
+
 	UPROPERTY(VisibleDefaultsOnly)
 	class UStaticMeshComponent* Mesh;
 
-public:
+public:	
 	// Sets default values for this actor's properties
-	AJG02_SpawnActor();
+	AJG01_Cylinder();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-private:
-	UFUNCTION()
-	void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
 };

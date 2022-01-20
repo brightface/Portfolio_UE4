@@ -4,20 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "JG02_SpawnActor.generated.h"
+#include "JG07_SpotLight.generated.h"
 
 UCLASS()
-class THELASTRPG_API AJG02_SpawnActor : public AActor
+class THELASTRPG_API AJG07_SpotLight : public AActor
 {
 	GENERATED_BODY()
-
-protected:
+	
+	private:
 	UPROPERTY(VisibleDefaultsOnly)
-	class UStaticMeshComponent* Mesh;
+	class USceneComponent* Scene;
 
-public:
+	UPROPERTY(VisibleDefaultsOnly)
+	class UTextRenderComponent* Text;
+
+	UPROPERTY(VisibleDefaultsOnly)
+	class USpotLightComponent* SpotLights[3];
+
+public:	
 	// Sets default values for this actor's properties
-	AJG02_SpawnActor();
+	AJG07_SpotLight();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,7 +31,6 @@ protected:
 
 private:
 	UFUNCTION()
-	void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
+	void OnLightColor(int32 InIndex, FLinearColor InColor);
+
 };

@@ -4,20 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "JG02_SpawnActor.generated.h"
+#include "JG09_Particles.generated.h"
 
 UCLASS()
-class THELASTRPG_API AJG02_SpawnActor : public AActor
+class THELASTRPG_API AJG09_Particles : public AActor
 {
 	GENERATED_BODY()
-
-protected:
+	
+	private:
 	UPROPERTY(VisibleDefaultsOnly)
-	class UStaticMeshComponent* Mesh;
+	class USceneComponent* Scene;
 
-public:
+	UPROPERTY(VisibleDefaultsOnly)
+	class UTextRenderComponent* Text;
+
+	UPROPERTY(VisibleDefaultsOnly)
+	class UParticleSystem* Particles[3];
+
+public:	
 	// Sets default values for this actor's properties
-	AJG02_SpawnActor();
+	AJG09_Particles();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,7 +31,5 @@ protected:
 
 private:
 	UFUNCTION()
-	void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
+	void PlayParticle(int32 InIndex);
 };

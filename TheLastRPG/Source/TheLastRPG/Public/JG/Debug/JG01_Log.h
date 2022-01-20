@@ -4,28 +4,24 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "JG02_SpawnActor.generated.h"
+#include "JG01_Log.generated.h"
 
 UCLASS()
-class THELASTRPG_API AJG02_SpawnActor : public AActor
+class THELASTRPG_API AJG01_Log : public AActor
 {
 	GENERATED_BODY()
-
-protected:
-	UPROPERTY(VisibleDefaultsOnly)
-	class UStaticMeshComponent* Mesh;
-
-public:
+	
+public:	
 	// Sets default values for this actor's properties
-	AJG02_SpawnActor();
+	AJG01_Log();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 private:
-	UFUNCTION()
-	void ChangeColor();
-private:
-	class UMaterialInstanceDynamic* Material;
+	float Time;
 };
