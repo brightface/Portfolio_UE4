@@ -23,20 +23,24 @@ AYH_C02_ComponentBeginOverlap::AYH_C02_ComponentBeginOverlap()
 
 	
 }
-
+//박스 붙였다.
 void AYH_C02_ComponentBeginOverlap::BeginPlay()
 {
 	Super::BeginPlay();
 	Box->OnComponentBeginOverlap.AddDynamic(this, &AYH_C02_ComponentBeginOverlap::ComponentBeginOverlap);
 	Box->OnComponentEndOverlap.AddDynamic(this, &AYH_C02_ComponentBeginOverlap::ComponentEndOverlap);
+
+
 }
 
 void AYH_C02_ComponentBeginOverlap::ComponentBeginOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
-{
+{	
+	PointLight->SetVisibility(true);
 }
 
 void AYH_C02_ComponentBeginOverlap::ComponentEndOverlap(UPrimitiveComponent * OverlappedComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex)
 {
+	PointLight->SetVisibility(false);
 }
 
 
