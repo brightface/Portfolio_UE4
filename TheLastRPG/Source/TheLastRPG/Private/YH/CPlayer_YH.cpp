@@ -1,11 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "YH/CPlayer_YH.h"
+#include "YH/YH_CAnimInstance.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Materials/MaterialInstanceConstant.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "YH/Global_YH.h"
 
 // Sets default values
@@ -29,15 +29,19 @@ ACPlayer_YH::ACPlayer_YH()
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->MaxWalkSpeed = 400.0f;
-
+	//SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin.SK_Mannequin'
 	USkeletalMesh* mesh;
-	CHelpers_YH::GetAsset<USkeletalMesh>(&mesh, "SkeletalMesh'/Game/Character/Mesh/SK_Mannequin.SK_Mannequin'");
+	CHelpers_YH::GetAsset<USkeletalMesh>(&mesh, "SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin.SK_Mannequin'");
 	GetMesh()->SetSkeletalMesh(mesh);
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
 	GetMesh()->SetRelativeRotation(FRotator(0, -90, 0));
 
 	TSubclassOf<UAnimInstance> animInstance;
-	CHelpers_YH::GetClass<UAnimInstance>(&animInstance, "Blueprint'/Game/YongHwan/BP/YH_BP_CAnimInstance.YH_BP_CAnimInstance_C'");
+	//블루프린트 클래스가 아니라 애니메이션 블루프린트를 가져와야돼! 와 시발 이거 에러도 안뜨네
+	//AnimBlueprint'/Game/YongHwan/BP/YH_ABP_CPlayer.YH_ABP_CPlayer_C'
+	//Blueprint'/Game/YongHwan/BP/YH_BP_CAnimInstance.YH_BP_CAnimInstance_C' 이게 아니라
+	//AnimBlueprint'/Game/YongHwan/BP/YH_ABP_CPlayer2.YH_ABP_CPlayer2'
+	CHelpers_YH::GetClass<UAnimInstance>(&animInstance, "AnimBlueprint'/Game/YongHwan/BP/YH_ABP_CPlayer2.YH_ABP_CPlayer2_C'");
 	GetMesh()->SetAnimInstanceClass(animInstance);
 
 	SpringArm->SetRelativeLocation(FVector(0, 0, 60));
@@ -50,7 +54,19 @@ ACPlayer_YH::ACPlayer_YH()
 void ACPlayer_YH::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	UMaterialInstanceConstant* bodyMaterial;
+	//MaterialInstanceConstant'/Game/YongHwan/Materials/YH_M_UE4Man_Body_Inst.YH_M_UE4Man_Body_Inst'
+	//MaterialInstanceConstant'/Game/YongHwan/Materials/YH_M_UE4Man_ChestLogo_Inst.YH_M_UE4Man_ChestLogo_Inst'
+	CHelpers_YH::GetAssetDynamic<UMaterialInstanceConstant>(&bodyMaterial, "MaterialInstanceConstant'/Game/YongHwan/Materials/YH_M_UE4Man_Body_Inst.YH_M_UE4Man_Body_Inst'");
+
+	UMaterialInstanceConstant* logoMaterial;
+	CHelpers_YH::GetAssetDynamic<UMaterialInstanceConstant>(&logoMaterial, "MaterialInstanceConstant'/Game/YongHwan/Materials/YH_M_UE4Man_ChestLogo_Inst.YH_M_UE4Man_ChestLogo_Inst'");
+
+	BodyMaterial = UMaterialInstanceDynamic::Create(bodyMaterial, this);
+	LogoMaterial = UMaterialInstanceDynamic::Create(logoMaterial, this);
+
+	GetMesh()->SetMaterial(0, BodyMaterial);
+	GetMesh()->SetMaterial(1, LogoMaterial);	
 }
 
 // Called every frame
@@ -112,5 +128,11 @@ void ACPlayer_YH::OffRunning()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 400;
 	YH_CLog::Log(GetCharacterMovement()->MaxWalkSpeed);
+}
+
+void ACPlayer_YH::ChangeColor(FLinearColor InColor)
+{
+	BodyMaterial->SetVectorParameterValue("BodyColor", InColor);
+	LogoMaterial->SetVectorParameterValue("BodyColor", InColor);
 }
 
