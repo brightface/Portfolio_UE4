@@ -40,10 +40,10 @@ void AYH_C07_SpotLight::BeginPlay()
 	CHelpers_YH::FindActors<AYH_C05_MulticastTrigger>(GetWorld(), triggers);
 	
 	//왜 이거 넣으면 터지지?
-	//triggers[0]->OnMultiLightBeginOverlap.AddUFunction(this, "OnLightColor");
+	triggers[0]->OnMultiLightBeginOverlap.AddUFunction(this, "OnLightColor");
 	
-	//if (triggers[0]->OnMultiLightBeginOverlap.IsBound())
-	//	triggers[0]->OnMultiLightBeginOverlap.Broadcast(0, FLinearColor(0, 0, 1));
+	if (triggers[0]->OnMultiLightBeginOverlap.IsBound())
+		triggers[0]->OnMultiLightBeginOverlap.Broadcast(0, FLinearColor(0, 0, 1));
 }
 
 void AYH_C07_SpotLight::OnLightColor(int32 InIndex, FLinearColor InColor)

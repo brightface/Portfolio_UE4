@@ -45,9 +45,9 @@ void AYH_C06_Box::BeginPlay()
 	CHelpers_YH::FindActors<AYH_C05_MulticastTrigger>(GetWorld(), triggers);
 	
 	//이거때문에 터진다. - 이게 무엇인가 잘 알 필요가 있다.
-	//triggers[0]->OnMultiLightBeginOverlap.AddUFunction(this, "OnPhysics");
+	triggers[0]->OnMultiLightBeginOverlap.AddUFunction(this, "OnPhysics");
 
-	//MaterialInstanceConstant'/Game/YongHwan/Materials/YH_Mesh_Inst.YH_Mesh_Inst'
+	//MaterialInstanceConstant'/Game/YongHwan/Materials/YH_Mesh_Inst.YH_Mesh_Inst';
 	UMaterialInstanceConstant* material;
 	CHelpers_YH::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/YongHwan/Materials/YH_Mesh_Inst.YH_Mesh_Inst'");
 
