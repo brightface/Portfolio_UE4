@@ -4,6 +4,7 @@
 #include "SH/SH_Player.h"
 #include "SH/SH_Global.h"
 #include "SH/SH_CAnimInstance.h"
+#include "SH/SH_CRifle.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
@@ -31,7 +32,7 @@ ASH_Player::ASH_Player()
 	GetCharacterMovement()->MaxWalkSpeed = 400.0f;
 
 	USkeletalMesh* mesh;
-	SH_CHelpers::GetAsset<USkeletalMesh>(&mesh, "SkeletalMesh'/Game/Mannequin/Character/Mesh/SK_Mannequin_Female.SK_Mannequin_Female'");
+	SH_CHelpers::GetAsset<USkeletalMesh>(&mesh, "SkeletalMesh'/Game/SungHoon/Mannequin/SH_Mannequin_Female.SH_Mannequin_Female'");
 	GetMesh()->SetSkeletalMesh(mesh);
 
 	GetMesh()->SetRelativeLocation(FVector(0, 0, -90));
@@ -62,6 +63,8 @@ void ASH_Player::BeginPlay()
 	LogoMaterial = UMaterialInstanceDynamic::Create(logoMaterial, this);
 	GetMesh()->SetMaterial(0, BodyMaterial); // 0번째 인덱스에 우리가 만든 머티리얼을 할당한다.
 	GetMesh()->SetMaterial(1, LogoMaterial); // 1번째 인덱스에 우리가 만든 머티리얼을 할당한다.
+
+	Rifle = ASH_CRifle::Spawn(GetWorld(), this);
 }
 
 void ASH_Player::Tick(float DeltaTime)
@@ -82,6 +85,7 @@ void ASH_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 
 	PlayerInputComponent->BindAction("Running", EInputEvent::IE_Pressed, this, &ASH_Player::OnRunning);
 	PlayerInputComponent->BindAction("Running", EInputEvent::IE_Released, this, &ASH_Player::OffRunning);
+	PlayerInputComponent->BindAction("Rifle", EInputEvent::IE_Released, this, &ASH_Player::OnRifle);
 }
 
 void ASH_Player::OnMoveForward(float Axis)
@@ -114,12 +118,19 @@ void ASH_Player::OnVerticalLook(float Axis)
 
 void ASH_Player::OnRunning()
 {
+	SH_CLog::Log(FString("Success OnRunning!"));
 	GetCharacterMovement()->MaxWalkSpeed = 850;
 }
 
 void ASH_Player::OffRunning()
 {
+	SH_CLog::Log(FString("Success OffRunning!"));
 	GetCharacterMovement()->MaxWalkSpeed = 400;
+}
+
+void ASH_Player::OnRifle()
+{
+	SH_CLog::Log(FString("Success OnRifle!"));
 }
 
 void ASH_Player::ChangeColor(FLinearColor InColor)

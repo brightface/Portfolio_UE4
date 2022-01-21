@@ -46,6 +46,8 @@ private:
 	void OnRunning();
 	void OffRunning();
 
+	void OnRifle();
+
 public:
 	UFUNCTION(BlueprintCallable) // BP에서 콜할 수 있는 함수
 		void ChangeColor(FLinearColor InColor);
@@ -53,4 +55,7 @@ public:
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
 	class UMaterialInstanceDynamic* LogoMaterial;
+
+private:
+	class ASH_CRifle* Rifle;
 };
