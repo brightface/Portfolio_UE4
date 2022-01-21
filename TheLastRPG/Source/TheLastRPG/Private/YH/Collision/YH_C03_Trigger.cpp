@@ -1,7 +1,7 @@
+#include "YH/Collision/YH_C03_Trigger.h"
 #include "YH/Global_YH.h"
 #include "Components/BoxComponent.h"
 #include "Components/TextRenderComponent.h"
-#include "YH/Collision/YH_C03_Trigger.h"
 
 AYH_C03_Trigger::AYH_C03_Trigger()
 {

@@ -1,5 +1,5 @@
-#include "YH/Collision/YH_C03_Trigger.h"
 #include "YH/Collision/YH_C04_Light.h"
+#include "YH/Collision/YH_C03_Trigger.h"
 #include "YH/Global_YH.h"
 #include "Components/TextRenderComponent.h"
 #include "Components/PointLightComponent.h"

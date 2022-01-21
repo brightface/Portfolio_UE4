@@ -1,7 +1,6 @@
-
+#include "YH/Collision/YH_C05_MulticastTrigger.h"
 #include "Components/BoxComponent.h"
 #include "Components/TextRenderComponent.h"
-#include "YH/Collision/YH_C05_MulticastTrigger.h"
 #include "YH/Global_YH.h"
 
 // Sets default values

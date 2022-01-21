@@ -1,7 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+#include "YH/Trace/YH_C03_Cube.h"
 #include "YH/Global_YH.h"
 #include "Components/StaticMeshComponent.h"
-#include "YH/Trace/YH_C03_Cube.h"
 
 // Sets default values
 AYH_C03_Cube::AYH_C03_Cube()
